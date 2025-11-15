@@ -2,7 +2,7 @@
 
 # Microsoft Windows Server 2025 AMI Data Source
 data "aws_ami" "microsoft_windows_server_2025" {
-    most_recent = true
+  most_recent = true
 
   filter {
     name   = "name"
@@ -14,12 +14,12 @@ data "aws_ami" "microsoft_windows_server_2025" {
     values = ["hvm"]
   }
 
-    owners = ["801119661308"] # Microsoft Corporation
+  owners = ["801119661308"] # Microsoft Corporation
 }
 
 # Amazon Linux 2023 AMI Data Source
 data "aws_ami" "amazon_linux_2023" {
-    most_recent = true
+  most_recent = true
 
   filter {
     name   = "name"
@@ -31,7 +31,7 @@ data "aws_ami" "amazon_linux_2023" {
     values = ["hvm"]
   }
 
-    owners = ["137112412989"] # Amazon
+  owners = ["137112412989"] # Amazon
 }
 
 

@@ -1,7 +1,7 @@
 # Elastic IP Configuration
 
 resource "aws_eip" "main" {
-  domain           = "vpc"
+  domain = "vpc"
 }
 
 # Nat Configuration

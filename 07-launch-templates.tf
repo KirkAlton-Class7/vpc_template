@@ -1,14 +1,14 @@
 # Launch Template for Private Client Auto Scaling Group
 resource "aws_launch_template" "private_client_asg" {
-  name = "private-client-asg-lt"
+  name     = "private-client-asg-lt"
   image_id = data.aws_ami.amazon_linux_2023.id
   # image_id = data.aws_ssm_parameter.al2023.value  # Alternatively, use latest AL2023 AMI via SSM Parameter Store (From Aaron's code. Looks simpler)
-  instance_type = "t3.micro"
+  instance_type          = "t3.micro"
   vpc_security_group_ids = [aws_security_group.private_asg.id]
   #key_name = "osaka-key"  # Replace with your key pair name
   user_data = filebase64("${path.module}/private_client_a_script.sh") # Custom script path for Client A (base64 encoding required for launch templates)
 
-  ebs_optimized = true  
+  ebs_optimized                        = true
   instance_initiated_shutdown_behavior = "terminate"
 
   monitoring {
