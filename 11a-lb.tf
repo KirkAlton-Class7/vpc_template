@@ -1,3 +1,4 @@
+# Public Application Load Balancer
 resource "aws_lb" "public_app_lb_01" {
   name               = "public-app-lb-01"
   internal           = false
