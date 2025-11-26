@@ -4,9 +4,8 @@
 resource "aws_lb_target_group" "private_asg_tg" {
   name        = "private-client-asg-tg"
   target_type = "instance"
+  protocol    = "HTTP"
   port        = 80
-  protocol    = "HTTP" # Target group must use HTTP or HTTPS protocol if attached to an Application Load Balancer (ALB only supports Layer 7; HTTP and HTTPS).
-  #protocol_version = "HTTP1" # Required when protocol is HTTP or HTTPS. Default is HTTP1 but you can specify GRPC or HTTP2 if needed.
   vpc_id = aws_vpc.main.id
 
   load_balancing_algorithm_type     = "round_robin"
@@ -18,8 +17,8 @@ resource "aws_lb_target_group" "private_asg_tg" {
     healthy_threshold   = 3
     interval            = 30
     path                = "/" # For HTTP and HTTPS health checks, the default is "/". For gRPC health checks, the default is "/AWS.ALB/healthcheck".
-    port                = "80"
     protocol            = "HTTP" # TCP (Layer 4) is not supported for health checks if the protocol of the target group is HTTP or HTTPS (Layer 7). This is a mismatch and won't work.
+    port                = "80"
     timeout             = 6
     unhealthy_threshold = 3
   }

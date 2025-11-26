@@ -13,8 +13,8 @@ resource "aws_security_group" "public_app" {
 resource "aws_vpc_security_group_ingress_rule" "allow_all_inbound_http_ipv4_public_app" {
   security_group_id = aws_security_group.public_app.id
   cidr_ipv4         = "0.0.0.0/0"
-  from_port         = 80
   ip_protocol       = "tcp"
+  from_port         = 80
   to_port           = 80
 }
 
@@ -22,8 +22,8 @@ resource "aws_vpc_security_group_ingress_rule" "allow_all_inbound_http_ipv4_publ
 resource "aws_vpc_security_group_ingress_rule" "allow_all_inbound_https_ipv4_public_app" {
   security_group_id = aws_security_group.public_app.id
   cidr_ipv4         = "0.0.0.0/0"
-  from_port         = 443
   ip_protocol       = "tcp"
+  from_port         = 443
   to_port           = 443
 }
 
@@ -31,8 +31,8 @@ resource "aws_vpc_security_group_ingress_rule" "allow_all_inbound_https_ipv4_pub
 resource "aws_vpc_security_group_ingress_rule" "allow_all_inbound_ssh_ipv4_public_app" {
   security_group_id = aws_security_group.public_app.id
   cidr_ipv4         = "0.0.0.0/0"
-  from_port         = 22
   ip_protocol       = "tcp"
+  from_port         = 22
   to_port           = 22
 }
 
@@ -62,8 +62,8 @@ resource "aws_security_group" "bastion_host" {
 resource "aws_vpc_security_group_ingress_rule" "allow_all_inbound_rdp_ipv4_bastion" {
   security_group_id = aws_security_group.bastion_host.id
   cidr_ipv4         = "73.166.82.125/32" # Replace with your your authorized IP address
-  from_port         = 3389
   ip_protocol       = "tcp"
+  from_port         = 3389
   to_port           = 3389
 }
 
@@ -88,8 +88,8 @@ resource "aws_security_group" "private_app" {
 # SG Rule: Allow HTTP Inbound only from Public App SG
 resource "aws_vpc_security_group_ingress_rule" "allow_inbound_http_from_public_app_sg" {
   security_group_id            = aws_security_group.private_app.id
-  from_port                    = 80
   ip_protocol                  = "tcp"
+  from_port                    = 80
   to_port                      = 80
   referenced_security_group_id = aws_security_group.public_app.id
 }
@@ -98,32 +98,34 @@ resource "aws_vpc_security_group_ingress_rule" "allow_inbound_http_from_public_a
 resource "aws_vpc_security_group_ingress_rule" "allow_inbound_https_from_public_app_sg" {
   security_group_id = aws_security_group.private_app.id
   cidr_ipv4         = "0.0.0.0/0"
-  from_port         = 443
   ip_protocol       = "tcp"
+  from_port         = 443
   to_port           = 443
 }
 
 # SG Rule: Allow SSH Inbound only from Public App SG
 resource "aws_vpc_security_group_ingress_rule" "allow_inbound_ssh_from_public_app_sg" {
   security_group_id            = aws_security_group.private_app.id
-  from_port                    = 22
   ip_protocol                  = "tcp"
+  from_port                    = 22
   to_port                      = 22
   referenced_security_group_id = aws_security_group.public_app.id
 }
 
 # SG Rule: Allow HTTP Outbound IPv4 for Private App SG (for package updates)
 resource "aws_vpc_security_group_egress_rule" "allow_http_outbound_ipv4_private_app" {
-  security_group_id = aws_security_group.private_asg.id
+  security_group_id = aws_security_group.private_app.id
   cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = "tcp"
   to_port           =  80
+  from_port         =  80
 }
 
 # SG Rule: Allow HTTPS Outbound IPv4 for Private App SG (for package updates)
 resource "aws_vpc_security_group_egress_rule" "allow_https_outbound_ipv4_private_app" {
-  security_group_id = aws_security_group.private_asg.id
+  security_group_id = aws_security_group.private_app.id
   cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = "tcp"
   to_port           =  443
+  from_port         =  443
 }

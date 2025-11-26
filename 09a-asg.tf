@@ -1,7 +1,7 @@
 
 # Auto Scaling Group for Private Client ASG
 resource "aws_autoscaling_group" "private_client_asg" {
-
+  name = "private-client-asg"
   vpc_zone_identifier = [aws_subnet.private_app_a.id,
     aws_subnet.private_app_b.id,
   aws_subnet.private_app_c.id]

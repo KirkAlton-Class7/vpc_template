@@ -13,8 +13,8 @@ resource "aws_security_group" "public_alb" {
 resource "aws_vpc_security_group_ingress_rule" "allow_all_inbound_http_ipv4_public_alb" {
   security_group_id = aws_security_group.public_alb.id
   cidr_ipv4         = "0.0.0.0/0"
-  from_port         = 80
   ip_protocol       = "tcp"
+  from_port         = 80
   to_port           = 80
 }
 
@@ -22,15 +22,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_all_inbound_http_ipv4_publ
 resource "aws_vpc_security_group_ingress_rule" "allow_all_inbound_https_ipv4_public_alb" {
   security_group_id = aws_security_group.public_alb.id
   cidr_ipv4         = "0.0.0.0/0"
-  from_port         = 443
   ip_protocol       = "tcp"
+  from_port         = 443
   to_port           = 443
 }
-
-# SG Rule: Allow all Outbound IPv4 for Public ALB SG
-# IS THIS NEEDED? I DON'T THINK LOAD BALANCERS HANDLE OUTBOUND TRAFFIC.
-# resource "aws_vpc_security_group_egress_rule" "allow_all_outbound_ipv4_public_alb" {
-#   security_group_id = aws_security_group.public_alb.id
-#   cidr_ipv4         = "0.0.0.0/0"
-#   ip_protocol       = "-1" # semantically equivalent to all ports
-# }

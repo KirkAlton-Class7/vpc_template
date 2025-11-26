@@ -8,6 +8,4 @@ resource "aws_vpc" "main" {
   }
 }
 
-# data "aws_availability_zones" "available" {
-#   availability_zone_ids = ["ap-northeast-3a", "ap-northeast-3b", "ap-northeast-3c"]
-# }
+
