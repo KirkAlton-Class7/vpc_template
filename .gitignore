@@ -47,9 +47,12 @@ terraform.rc
 !tests/output.json
 *.pem
 
-#ignore packages
+# Ignore packages
 *.rpm
 rpm_packages/
 *.zip
 
 venv/
+
+# Ignore backup folder
+backup/

@@ -6,6 +6,7 @@ resource "aws_autoscaling_group" "private_client_asg" {
     aws_subnet.private_app_b.id,
   aws_subnet.private_app_c.id]
 
+  desired_capacity  = 3
   max_size          = 6
   min_size          = 3
   health_check_type = "ELB"
