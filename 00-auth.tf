@@ -10,7 +10,7 @@ terraform {
 provider "aws" {
   # Configuration options
 
-  region = "ap-northeast-3"
+  region = "us-west-1"
   profile = "default" # Uses AWS credentials from [default] profile in ~/.aws/credentials
 
   default_tags {
@@ -25,7 +25,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket = "kirkdevsecops-terraform-state"
-    key = "class7/terraform/dev/kirk-vpc-demo/terraform.tfstate"
+    key = "class7/terraform/dev/vpc-template/terraform.tfstate"
     region = "us-west-2"
   }
 }

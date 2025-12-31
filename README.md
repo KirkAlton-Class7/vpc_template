@@ -1,5 +1,5 @@
-## Clone and launch in Terraform (deploys in ap-northeast-3)
+## 3 Tier VPC Template (deploys in us-west-1)
 ## comment out backend first, or replace with your own source.
 ```shell
-git clone https://github.com/KirkAlton-Class7/kirk_vpc_demo.git
+git clone https://github.com/KirkAlton-Class7/vpc_template.git
 ```
