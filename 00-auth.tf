@@ -10,7 +10,7 @@ terraform {
 provider "aws" {
   # Configuration options
 
-  region = "us-west-1"
+  region = "us-west-2"
   profile = "default" # Uses AWS credentials from [default] profile in ~/.aws/credentials
 
   default_tags {
