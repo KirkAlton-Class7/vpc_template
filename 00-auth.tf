@@ -7,14 +7,6 @@ terraform {
   }
 }
 
-
-
-k
-
-
-
-
-
 provider "aws" {
   # Configuration options
 
