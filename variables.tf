@@ -5,7 +5,7 @@ Choose an Availability Zone by number:
     1   =   us-east-1
     2   =   us-west-2
     3   =   ca-central-1
-    4   =   eu-central-1
+    4   =   eu-west-1
     5   =   ap-northeast-1
     6   =   ap-southeast-2
 EOT
@@ -21,7 +21,7 @@ variable "region_map" {
         "1" = "us-east-1"
         "2" = "us-west-2"
         "3" = "ca-central-1"
-        "4" = "eu-ecntral-1"
+        "4" = "eu-west-1"
         "5" = "ap-northeast-1"
         "6" = "ap-southeast-2"
     }
