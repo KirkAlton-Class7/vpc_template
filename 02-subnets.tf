@@ -3,7 +3,7 @@
 resource "aws_subnet" "public_a" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = "10.10.1.0/24"
-  availability_zone       = "us-west-2a"
+  availability_zone       = local.azs[0]
   map_public_ip_on_launch = true
   tags = {
     Name = "public-a"
@@ -15,7 +15,7 @@ resource "aws_subnet" "public_a" {
 resource "aws_subnet" "public_b" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = "10.10.2.0/24"
-  availability_zone       = "us-west-2b"
+  availability_zone       = local.azs[1]
   map_public_ip_on_launch = true
 
   tags = {
@@ -28,7 +28,7 @@ resource "aws_subnet" "public_b" {
 resource "aws_subnet" "public_c" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = "10.10.3.0/24"
-  availability_zone = "us-west-2c"
+  availability_zone = local.azs[2]
 
   map_public_ip_on_launch = true
 
@@ -44,7 +44,7 @@ resource "aws_subnet" "public_c" {
 resource "aws_subnet" "private_egress_a" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = "10.10.11.0/24"
-  availability_zone = "us-west-2a"
+  availability_zone = local.azs[0]
 
   tags = {
     Name = "private-egress-a"
@@ -56,7 +56,7 @@ resource "aws_subnet" "private_egress_a" {
 resource "aws_subnet" "private_egress_b" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = "10.10.22.0/24"
-  availability_zone = "us-west-2b"
+  availability_zone = local.azs[1]
 
 
   tags = {
@@ -69,7 +69,7 @@ resource "aws_subnet" "private_egress_b" {
 resource "aws_subnet" "private_egress_c" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = "10.10.33.0/24"
-  availability_zone = "us-west-2c"
+  availability_zone = local.azs[2]
 
 
   tags = {
@@ -84,7 +84,7 @@ resource "aws_subnet" "private_egress_c" {
 resource "aws_subnet" "private_data_a" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = "10.10.44.0/24"
-  availability_zone = "us-west-2a"
+  availability_zone = local.azs[0]
 
 
   tags = {
@@ -97,7 +97,7 @@ resource "aws_subnet" "private_data_a" {
 resource "aws_subnet" "private_data_b" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = "10.10.55.0/24"
-  availability_zone = "us-west-2b"
+  availability_zone = local.azs[1]
 
   tags = {
     Name = "private-data-b"
@@ -109,7 +109,7 @@ resource "aws_subnet" "private_data_b" {
 resource "aws_subnet" "private_data_c" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = "10.10.66.0/24"
-  availability_zone = "us-west-2c"
+  availability_zone = local.azs[2]
   tags = {
     Name = "private-data-c"
     Access = "private"
