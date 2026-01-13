@@ -1,5 +1,12 @@
-# Public App Subnet Configuration
+# Shared random integer resource for deploying resources on a random subnet.
+resource "random_integer" "subnet_picker" {
+  min = 0
+  max = length(local.public_subnets) -1
+}
+# Note: This resource is shared. Keep the number of subnets symmetrical so it does't break when using with other subnet types (ex, 3 public, 3 private, 3 data).
 
+
+# Public Subnet Configuration
 resource "aws_subnet" "public_a" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = "10.10.1.0/24"
@@ -39,7 +46,7 @@ resource "aws_subnet" "public_c" {
   }
 }
 
-# Private App Subnet Configuration
+# Private Egress Subnet Configuration
 
 resource "aws_subnet" "private_egress_a" {
   vpc_id            = aws_vpc.main.id
