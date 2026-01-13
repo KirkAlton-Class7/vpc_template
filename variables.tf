@@ -26,3 +26,12 @@ variable "region_map" {
         "6" = "ap-southeast-2"
     }
 }
+
+variable "project_name" {
+    type = string
+}
+
+variable "trusted_ip" {
+    type = string
+    description = "Enter trusted IPv4 address:"
+}
