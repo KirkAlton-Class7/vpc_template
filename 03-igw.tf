@@ -3,5 +3,6 @@ resource "aws_internet_gateway" "main" {
 
   tags = {
     Name = "main-igw"
+    Component = "network"
   }
 }

@@ -12,6 +12,7 @@ resource "aws_nat_gateway" "main" {
 
   tags = {
     Name = "main-nat-gw"
+    Component = "network"
   }
   depends_on = [aws_internet_gateway.main]
 }

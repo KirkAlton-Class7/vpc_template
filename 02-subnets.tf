@@ -49,7 +49,7 @@ resource "aws_subnet" "private_egress_a" {
 
   tags = merge(
     {
-      Name = private-egress-a
+      Name = "private-egress-a"
     },
     local.private_egress_subnet_tags
   )

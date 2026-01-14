@@ -18,6 +18,8 @@ resource "aws_instance" "public_app" {
   associate_public_ip_address = true
 
   tags = {
-    Name = "Public-App-EC2"
+    Name = "public-app-ec2"
+    Component = "compute"
+    AppComponent = "frontend"
   }
 }

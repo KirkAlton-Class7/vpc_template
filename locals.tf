@@ -1,14 +1,13 @@
 locals {
     environment = lower(var.env)
+    application = var.application_name
+    trusted_ip = var.trusted_ip
 
     region = var.region_map[var.region_choice]
     azs = data.aws_availability_zones.available.names    
     
     name_prefix = "${local.application}-${local.environment}"
     name_suffix = random_string.suffix    
-
-    application = var.application_name
-    trusted_ip = var.trusted_ip
 
     # Shared random index
     subnet_index = random_integer.subnet_picker.result
@@ -25,7 +24,7 @@ locals {
     # Common tags for public subnets
     public_subnet_tags = {
         Exposure   = "public"
-        Egress = "IGW"
+        Egress = "igw"
         }
     
     private_egress_subnets = [
@@ -38,7 +37,7 @@ locals {
 
     private_egress_subnet_tags = {
         Exposure   = "egress-only"
-        Egress = "NAT"
+        Egress = "nat"
         }
     
     private_data_subnets = [
@@ -51,7 +50,7 @@ locals {
     
     private_data_subnet_tags = {
         Exposure   = "internal-only"
-        Egress = "None"
+        Egress = "none"
         }
 
     ec2_sg = aws_security_group.ec2_public_app.id

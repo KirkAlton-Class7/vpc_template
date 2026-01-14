@@ -6,6 +6,7 @@ resource "aws_security_group" "private_db" {
 
   tags = {
     Name = "private-db-sg"
+    Component = "security"
   }
 }
 

@@ -5,6 +5,7 @@ resource "aws_vpc" "main" {
   enable_dns_hostnames = true
   tags = {
     Name = "quick-vpc-${local.region}"
+    Component = "network"
   }
 }
 data "aws_availability_zones" "available" {

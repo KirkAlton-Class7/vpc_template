@@ -18,7 +18,7 @@ provider "aws" {
 
   default_tags {
     tags = {
-      ManagedBy = "Terraform"
+      ManagedBy = "terraform"
       Environment = "${local.environment}"
       Application = "${local.application}"
     }
@@ -31,7 +31,6 @@ provider "random" {
 
 # Terraform backend block sets up configuration to store the state file remotely.
 # Bucket can be configured in a different region than the Terraform deployment.
-
 # terraform {
 #   backend "s3" {
 #     bucket = "kirkdevsecops-terraform-state"

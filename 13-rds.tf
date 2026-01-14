@@ -22,8 +22,9 @@ resource "aws_db_instance" "lab_mysql" {
 
   tags = {
     Name = "lab-mysql"
+    Component = "data"
     AppComponent = "db"
-    Engine = "MySQL"
+    Engine = "mysql"
     # DataStore = "relational"
     DataClass = "confidential"
   }
