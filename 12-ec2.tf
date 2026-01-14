@@ -3,8 +3,11 @@ resource "aws_instance" "public_app" {
   ami                    = data.aws_ami.amazon_linux_2023.id
   instance_type          = "t3.micro"
   subnet_id              = local.random_public_subnet
-  vpc_security_group_ids = [local.ec2_sg]
-  
+  vpc_security_group_ids = [local.ec2_sg_id]
+
+  iam_instance_profile = aws_iam_instance_profile.get_db_secret.name
+  key_name = aws_key_pair.tf_armageddon_key.key_name
+
   user_data               = templatefile(
     "${path.module}/1a_user_data.sh.tpl",
     {
@@ -20,4 +23,10 @@ resource "aws_instance" "public_app" {
     Component = "compute"
     AppComponent = "frontend"
   }
+}
+
+# Instance Profile
+resource "aws_iam_instance_profile" "get_db_secret" {
+  name = "get-db-secret-profile"
+  role = aws_iam_role.get_db_secret.name
 }

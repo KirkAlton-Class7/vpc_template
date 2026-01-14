@@ -60,9 +60,9 @@ locals {
         }
 
     # Other Locals
-    ec2_sg = aws_security_group.ec2_public_app.id
+    ec2_sg_id = aws_security_group.ec2_public_app.id
     
-    private_db_sg = aws_security_group.private_db.id
+    private_db_sg_id = aws_security_group.private_db.id
 
     db_credentials = {
         username = "admin"
