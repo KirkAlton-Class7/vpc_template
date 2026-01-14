@@ -41,7 +41,6 @@ resource "aws_subnet" "public_c" {
 }
 
 # Private Egress Subnet Configuration
-
 resource "aws_subnet" "private_egress_a" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = "10.10.11.0/24"
@@ -83,7 +82,6 @@ resource "aws_subnet" "private_egress_c" {
 }
 
 # Private Data Subnet Configuration
-
 resource "aws_subnet" "private_data_a" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = "10.10.44.0/24"

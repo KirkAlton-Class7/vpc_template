@@ -1,3 +1,4 @@
+# Required providers
 terraform {
   required_providers {
     aws = {
@@ -10,6 +11,8 @@ terraform {
     }
   }
 }
+
+# Provider configurations
 
 provider "aws" {
   # Configuration options
@@ -29,8 +32,7 @@ provider "random" {
   # Configuration options
 }
 
-# Terraform backend block sets up configuration to store the state file remotely.
-# Bucket can be configured in a different region than the Terraform deployment.
+# Backend configuration
 # terraform {
 #   backend "s3" {
 #     bucket = "kirkdevsecops-terraform-state"
@@ -38,3 +40,5 @@ provider "random" {
 #     region = "us-west-2"
 #   }
 # }
+# Terraform backend block sets up configuration to store the state file remotely.
+# The bucket can be configured in a different region than the Terraform deployment.

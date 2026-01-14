@@ -1,6 +1,4 @@
-# Data Sources for EC2 AMIs
-
-# Amazon Linux 2023 AMI Data Source
+# EC2 - Amazon Linux 2023 AMI Data Source
 data "aws_ami" "amazon_linux_2023" {
   most_recent = true
 

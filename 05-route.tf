@@ -1,5 +1,4 @@
 # Public Route Table
-
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
 
@@ -10,12 +9,12 @@ resource "aws_route_table" "public" {
 
   tags = {
     Name = "public-route-table"
+    Component = "network"
   }
 
 }
 
 # Public Route Table Associations
-
 resource "aws_route_table_association" "public_a" {
   subnet_id      = aws_subnet.public_a.id
   route_table_id = aws_route_table.public.id
@@ -33,7 +32,6 @@ resource "aws_route_table_association" "public_c" {
 
 
 # Private Route Table
-
 resource "aws_route_table" "private" {
   vpc_id = aws_vpc.main.id
 
@@ -44,12 +42,12 @@ resource "aws_route_table" "private" {
 
   tags = {
     Name = "private-route-table"
+    Component = "network"
   }
 
 }
 
 # Private Route Table Associations
-
 resource "aws_route_table_association" "private_egress_a" {
   subnet_id      = aws_subnet.private_egress_a.id
   route_table_id = aws_route_table.private.id
@@ -67,7 +65,6 @@ resource "aws_route_table_association" "private_egress_c" {
 
 
 # Local Route Table
-
 resource "aws_route_table" "local" {
   vpc_id = aws_vpc.main.id
 
@@ -78,13 +75,13 @@ resource "aws_route_table" "local" {
 
   tags = {
     Name = "local-route-table"
+    Component = "network"
   }
 
 }
 
 
 # Local Route Table Associations
-
 resource "aws_route_table_association" "private_data_a" {
   subnet_id      = aws_subnet.private_data_a.id
   route_table_id = aws_route_table.local.id

@@ -1,17 +1,21 @@
 locals {
+    # Environment setup
     environment = lower(var.env)
     application = var.application_name
     trusted_ip = var.trusted_ip
 
+    # Region and AZ
     region = var.region_map[var.region_choice]
     azs = data.aws_availability_zones.available.names    
     
+    # Naming helpers
     name_prefix = "${local.application}-${local.environment}"
     name_suffix = random_string.suffix    
 
-    # Shared random index
+    # Subnet selection helpers
     subnet_index = random_integer.subnet_picker.result
 
+    # Public Subnets
     public_subnets = [
         aws_subnet.public_a.id,
         aws_subnet.public_b.id,
@@ -27,6 +31,7 @@ locals {
         Egress = "igw"
         }
     
+    # Private Egress Subnets
     private_egress_subnets = [
         aws_subnet.private_egress_a.id,
         aws_subnet.private_egress_b.id,
@@ -40,6 +45,7 @@ locals {
         Egress = "nat"
         }
     
+    # Private Data Subnets
     private_data_subnets = [
         aws_subnet.private_data_a.id,
         aws_subnet.private_data_b.id,
@@ -53,6 +59,7 @@ locals {
         Egress = "none"
         }
 
+    # Other Locals
     ec2_sg = aws_security_group.ec2_public_app.id
     
     private_db_sg = aws_security_group.private_db.id

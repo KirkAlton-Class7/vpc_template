@@ -1,5 +1,3 @@
-# Global Helper Resources
-
 # Random string for suffixes
 resource "random_string" "suffix" {
   length           = 5

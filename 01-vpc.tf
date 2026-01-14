@@ -8,9 +8,7 @@ resource "aws_vpc" "main" {
     Component = "network"
   }
 }
+
 data "aws_availability_zones" "available" {
   state = "available"
 }
-
-
-

@@ -1,6 +1,4 @@
-# EC2 Instance Configurations
-
-#Public App EC2 (Amazon Linux 2023)
+# EC2 - Public App EC2
 resource "aws_instance" "public_app" {
   ami                    = data.aws_ami.amazon_linux_2023.id
   instance_type          = "t3.micro"

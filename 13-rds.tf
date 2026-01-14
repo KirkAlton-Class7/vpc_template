@@ -5,9 +5,7 @@ resource "random_password" "db_password" {
   override_special = "!#$%&*()-_=+[]{}<>:?"
 }
 
-# DB Instance Configurations
-
-# Private RDS
+# DB - Lab-MyySQL
 resource "aws_db_instance" "lab_mysql" {
   region = "${local.region}"
   allocated_storage    = 10
