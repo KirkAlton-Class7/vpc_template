@@ -4,7 +4,7 @@ resource "aws_iam_policy" "read_db_secret" {
   path        = "/"
   description = "Read specific secret for db."
 
-  policy = aws_iam_policy_document.read_db_secret.json
+  policy = data.aws_iam_policy_document.read_db_secret.json
 
   tags = {
     Name = "read-db-secret"
