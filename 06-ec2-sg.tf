@@ -6,7 +6,7 @@ resource "aws_security_group" "ec2_public_app" {
 
   tags = {
     Name = "ec2-public-app-sg"
-    Project = "${var.project_name}"
+    AppComponent = "frontend"
   }
 }
 

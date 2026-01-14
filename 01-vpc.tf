@@ -7,9 +7,9 @@ resource "aws_vpc" "main" {
     Name = "quick-vpc-${local.region}"
   }
 }
-
 data "aws_availability_zones" "available" {
   state = "available"
 }
+
 
 

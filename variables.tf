@@ -1,3 +1,13 @@
+variable "env" {
+    type = string
+    description = "Input environment name (dev, test, prod)."
+    
+    validation {
+        condition = contains(["dev", "test", "prod"], var.env)
+        error_message = "Environment must be: dev, test, or prod."
+        }
+}
+
 variable "region_choice" {
     type = string
     description = <<EOT
@@ -27,11 +37,16 @@ variable "region_map" {
     }
 }
 
-variable "project_name" {
+variable "application_name" {
     type = string
 }
 
 variable "trusted_ip" {
     type = string
     description = "Enter trusted IPv4 address:"
+    
+    validation {
+        condition = can(cidrnetmask(var.trusted_ip))
+        error_message = "Must be a valid IPv4 CIDR block address (e.g., 192.168.1.0/24 or 10.0.0.1/32)."
+    }
 }

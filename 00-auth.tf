@@ -18,7 +18,9 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Deployment = "Terraform"
+      ManagedBy = "Terraform"
+      Environment = "${local.environment}"
+      Application = "${local.application}"
     }
   }
 }
@@ -26,7 +28,6 @@ provider "aws" {
 provider "random" {
   # Configuration options
 }
-
 
 # Terraform backend block sets up configuration to store the state file remotely.
 # Bucket can be configured in a different region than the Terraform deployment.

@@ -1,35 +1,28 @@
-# Shared random integer resource for deploying resources on a random subnet.
-resource "random_integer" "subnet_picker" {
-  min = 0
-  max = length(local.public_subnets) -1
-}
-# Note: This resource is shared. Keep the number of subnets symmetrical so it does't break when using with other subnet types (ex, 3 public, 3 private, 3 data).
-
-
 # Public Subnet Configuration
 resource "aws_subnet" "public_a" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = "10.10.1.0/24"
   availability_zone       = local.azs[0]
   map_public_ip_on_launch = true
-  tags = {
-    Name = "public-a"
-    Access = "public"
-    Egress = "IGW"
-  }
+  tags = merge(
+    {
+      Name = "public-a"
+    },
+    local.public_subnet_tags
+  )
 }
-
 resource "aws_subnet" "public_b" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = "10.10.2.0/24"
   availability_zone       = local.azs[1]
   map_public_ip_on_launch = true
 
-  tags = {
-    Name = "public-b"
-    Access = "public"
-    Egress = "IGW"
-  }
+  tags = merge(
+    {
+      Name = "public-b"
+    },
+    local.public_subnet_tags
+  )
 }
 
 resource "aws_subnet" "public_c" {
@@ -39,11 +32,12 @@ resource "aws_subnet" "public_c" {
 
   map_public_ip_on_launch = true
 
-  tags = {
-    Name = "public-c"
-    Access = "public"
-    Egress = "IGW"
-  }
+  tags = merge(
+    {
+      Name = "public-c"
+    },
+    local.public_subnet_tags
+  )
 }
 
 # Private Egress Subnet Configuration
@@ -53,11 +47,12 @@ resource "aws_subnet" "private_egress_a" {
   cidr_block        = "10.10.11.0/24"
   availability_zone = local.azs[0]
 
-  tags = {
-    Name = "private-egress-a"
-    Access = "private"
-    Egress = "NAT"
-  }
+  tags = merge(
+    {
+      Name = private-egress-a
+    },
+    local.private_egress_subnet_tags
+  )
 }
 
 resource "aws_subnet" "private_egress_b" {
@@ -66,24 +61,25 @@ resource "aws_subnet" "private_egress_b" {
   availability_zone = local.azs[1]
 
 
-  tags = {
-    Name = "private-egress-b"
-    Access = "private"
-    Egress = "NAT"
-  }
+  tags = merge(
+    {
+      Name = "private-egress-b"
+    },
+    local.private_egress_subnet_tags
+  )
 }
-
 resource "aws_subnet" "private_egress_c" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = "10.10.33.0/24"
   availability_zone = local.azs[2]
 
 
-  tags = {
-    Name = "private-egress-c"
-    Access = "private"
-    Egress = "NAT"
-  }
+  tags = merge(
+    {
+      Name = "private-egress-c"
+    },
+    local.private_egress_subnet_tags
+  )
 }
 
 # Private Data Subnet Configuration
@@ -94,11 +90,12 @@ resource "aws_subnet" "private_data_a" {
   availability_zone = local.azs[0]
 
 
-  tags = {
-    Name = "private-data-a"
-    Access = "private"
-    Egress = "none"
-  }
+  tags = merge(
+    {
+      Name = "private-data-a"
+    },
+    local.private_data_subnet_tags
+  )
 }
 
 resource "aws_subnet" "private_data_b" {
@@ -106,20 +103,22 @@ resource "aws_subnet" "private_data_b" {
   cidr_block        = "10.10.55.0/24"
   availability_zone = local.azs[1]
 
-  tags = {
-    Name = "private-data-b"
-    Access = "private"
-    Egress = "none"
-  }
+  tags = merge(
+    {
+      Name = "private-data-b"
+    },
+    local.private_data_subnet_tags
+  )
 }
 
 resource "aws_subnet" "private_data_c" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = "10.10.66.0/24"
   availability_zone = local.azs[2]
-  tags = {
-    Name = "private-data-c"
-    Access = "private"
-    Egress = "none"
-  }
+  tags = merge(
+    {
+      Name = "private-data-c"
+    },
+    local.private_data_subnet_tags
+  )
 }
