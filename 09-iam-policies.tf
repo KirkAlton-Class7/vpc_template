@@ -1,13 +1,19 @@
-# Secret - Read-DB-Secret
+# IAM Policy - Read-DB-Secret
 resource "aws_iam_policy" "read_db_secret" {
-  name        = "get-db-secret-${local.name_suffix}"
+  name        = "read-db-secret-${local.name_suffix}"
   path        = "/"
   description = "Read specific secret for db."
 
   policy = aws_iam_policy_document.read_db_secret.json
+
+  tags = {
+    Name = "read-db-secret"
+    Component = "iam"
+    DataClass = "confidential"
+  }
 }
 
-# Policy Document - Read-DB-Secret
+# IAM Policy Data - Read-DB-Secret
 data "aws_iam_policy_document" "read_db_secret" {
   statement {
     sid = "ReadDBSecret"
