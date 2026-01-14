@@ -106,7 +106,6 @@ After=network.target
 
 [Service]
 WorkingDirectory=/opt/rdsapp
-Environment=SECRET_ID=lab/rds/mysql
 ExecStart=/usr/bin/python3 /opt/rdsapp/app.py
 Restart=always
 
