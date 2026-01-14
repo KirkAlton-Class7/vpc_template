@@ -10,7 +10,7 @@ locals {
     
     # Naming helpers
     name_prefix = "${local.application}-${local.environment}"
-    name_suffix = random_string.suffix    
+    name_suffix = lower(random_string.suffix.result)
 
     # Subnet selection helpers
     subnet_index = random_integer.subnet_picker.result

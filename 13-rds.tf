@@ -7,14 +7,17 @@ resource "random_password" "db_password" {
 
 # DB - Lab-MyySQL
 resource "aws_db_instance" "lab_mysql" {
-  region = "${local.region}"
-  allocated_storage    = 10
-  db_name              = "lab-mysql"
+  identifier = "lab-mysql-${local.name_suffix}"
+  db_subnet_group_name = aws_db_subnet_group.armageddon_1a_db.name
+
   engine               = "mysql"
   engine_version       = "8.0"
   instance_class       = "db.t3.micro"
+  allocated_storage    = 10
+
   username             = local.db_credentials.username
   password             = local.db_credentials.password
+  
   parameter_group_name = "default.mysql8.0"
   skip_final_snapshot  = true
 
