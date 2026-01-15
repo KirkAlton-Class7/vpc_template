@@ -69,5 +69,5 @@ locals {
         password = random_password.db_password.result
     }
 
-    secret_id = aws_secretsmanager_secret.lab_rds_mysql.name
+    secret_id = aws_secretsmanager_secret.lab_rds_mysql.arn
 }

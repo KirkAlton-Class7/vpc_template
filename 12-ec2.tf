@@ -7,9 +7,10 @@ resource "aws_instance" "public_app" {
 
   iam_instance_profile = aws_iam_instance_profile.get_db_secret.name
   key_name = aws_key_pair.tf_armageddon_key.key_name
+  # Replace with your key aws_key_pair resource to test EC2 via SSH
 
   user_data               = templatefile(
-    "${path.module}/1a_user_data.sh.tpl",
+    "${path.module}/999-1a_user_data.sh.tpl",
     {
       region = local.region,
       secret_id = local.secret_id
