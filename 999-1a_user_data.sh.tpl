@@ -97,10 +97,11 @@ if __name__ == "__main__":
 PY
 
 # Write environment file on the EC2 instance
-cat >/opt/rdsapp/rdsapp.env <<EOF
+cat >/etc/sysconfig/rdsapp <<EOF
 AWS_REGION=${region}
 SECRET_ID=${secret_id}
 EOF
+
 
 cat >/etc/systemd/system/rdsapp.service <<'SERVICE'
 [Unit]
@@ -109,8 +110,9 @@ After=network.target
 
 [Service]
 WorkingDirectory=/opt/rdsapp
-EnvironmentFile=/opt/rdsapp/rdsapp.env
+EnvironmentFile=/etc/sysconfig/rdsapp
 ExecStart=/usr/bin/python3 /opt/rdsapp/app.py
+
 Restart=always
 
 [Install]
