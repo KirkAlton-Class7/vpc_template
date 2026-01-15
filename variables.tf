@@ -43,7 +43,7 @@ variable "application_name" {
 
 variable "trusted_ip" {
     type = string
-    description = "Enter trusted IPv4 address:"
+    description = "Enter trusted IPv4 address as CIDR block (/32):"
     
     validation {
         condition = can(cidrnetmask(var.trusted_ip))

@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# Write environment file on the EC2 instance
-cat >/opt/rdsapp.env <<EOF
-AWS_REGION=${region}
-SECRET_ID=${secret_id}
-EOF
-
 dnf update -y
 dnf install -y python3-pip
 pip3 install flask pymysql boto3
@@ -102,6 +96,12 @@ if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80)
 PY
 
+# Write environment file on the EC2 instance
+cat >/opt/rdsapp/rdsapp.env <<EOF
+AWS_REGION=${region}
+SECRET_ID=${secret_id}
+EOF
+
 cat >/etc/systemd/system/rdsapp.service <<'SERVICE'
 [Unit]
 Description=EC2 to RDS Notes App
@@ -109,7 +109,7 @@ After=network.target
 
 [Service]
 WorkingDirectory=/opt/rdsapp
-EnvironmentFile=/opt/rdsapp.env
+EnvironmentFile=/opt/rdsapp/rdsapp.env
 ExecStart=/usr/bin/python3 /opt/rdsapp/app.py
 Restart=always
 
