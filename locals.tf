@@ -60,14 +60,5 @@ locals {
         }
 
     # Other Locals
-    ec2_sg_id = aws_security_group.ec2_public_app.id
-    
-    private_db_sg_id = aws_security_group.private_db.id
-
-    db_credentials = {
-        username = "admin"
-        password = random_password.db_password.result
-    }
-
-    secret_id = aws_secretsmanager_secret.lab_rds_mysql.arn
+    # Add here
 }
