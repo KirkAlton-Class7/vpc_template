@@ -35,7 +35,7 @@ output "public_app_info" {
   description = "EC2 Names and Browser Addresses"
   value = {
     name = aws_instance.public_app.tags["Name"]
-    az = aws_instance.availability_zone
+    az = aws_instance.public_app.availability_zone
     subnet_id = aws_instance.public_app.subnet_id
     ip-address = aws_instance.public_app.public_ip
     url = "http://${aws_instance.public_app.public_dns}"
@@ -55,27 +55,3 @@ output "rds_info" {
 output "rds_subnets" {
   value = aws_db_subnet_group.armageddon_1a_db.subnet_ids
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# test, test, 6, 73.166.82.125/32

@@ -43,6 +43,7 @@ variable "application_name" {
 
 variable "trusted_ip" {
     type = string
+    default = "0.0.0.0/0" # 0.0.0.0/0 for temporary testing. For production, use your private IP CIDR block
     description = "Enter trusted IPv4 address as CIDR block (/32):"
     
     validation {
