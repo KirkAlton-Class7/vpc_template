@@ -1,7 +1,10 @@
 #!/bin/bash
 
-export AWS_REGION="${region}"
-export SECRET_ID="${secret_id}"
+# Write environment file on the EC2 instance
+cat >/opt/rdsapp.env <<EOF
+AWS_REGION=${region}
+SECRET_ID=${secret_id}
+EOF
 
 dnf update -y
 dnf install -y python3-pip
@@ -106,6 +109,7 @@ After=network.target
 
 [Service]
 WorkingDirectory=/opt/rdsapp
+EnvironmentFile=/opt/rdsapp.env
 ExecStart=/usr/bin/python3 /opt/rdsapp/app.py
 Restart=always
 
