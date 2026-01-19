@@ -1,4 +1,4 @@
-# Private 3-Tier VPC
+# Private 3-Tier VPC with NAT Gateway
 
 This template deploys a private 3-tier VPC across three Availability Zones. It deploys only one public subnet, for the NAT Gateway.
 
